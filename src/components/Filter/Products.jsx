@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import ProductsDetail from './ProductsDetail';
-import { getProdByCategory } from '../../services/api';
-import { useParams } from 'react-router-dom';
+import { getAllProducts } from '../../services/api';
+// import { useParams } from 'react-router-dom';
 
 
 function Products() {
     const [data, setData] = useState([])
-    const { id } = useParams();
-    
+    // const { id } = useParams();
+
     useEffect(() => {
-        getProdByCategory(id).then(meh => setData(meh.products))
-    }, [id]);
+        const fetchData = async () => {
+            try {
+                const meh = await getAllProducts();
+                console.log("Gələn data:", meh);
+                setData(meh.products);
+            } catch (error) {
+                console.error("Data çəkməkdə xəta:", error);
+            }
+        }
+    
+        fetchData();
+    }, []);
     
     return (
         <div>{
-            data.map(item => <ProductsDetail {...item.products } />)
+            data.map(item => <ProductsDetail {...item } />)
         }</div>
     )
 }

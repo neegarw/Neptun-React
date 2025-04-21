@@ -1,6 +1,8 @@
 import React from 'react'
 
 function ProductsDetail({ img, name, price }) {    
+    console.log(img, name, price );
+    
     return (
         <div className='container mx-auto'>
             <div className="flex bg-gray-100 p-6">
