@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faTableCellsLarge, faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
 import { useParams } from 'react-router-dom';
-import { Pagination } from 'antd'
 import { getProductsBySearch } from '../../services/api';
 import { PiSquaresFourFill } from "react-icons/pi";
 import { IoMenu } from "react-icons/io5";
