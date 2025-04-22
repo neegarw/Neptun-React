@@ -3,7 +3,7 @@ import PriceRange from './PriceRange'
 
 function Filter() {
     return (
-        <div className="bg-[#F7F7F7] p-5 rounded-xl w-[25%] my-[40px]">
+        <div className="bg-[#F7F7F7] p-5 rounded-xl w-[25%] my-[40px] mx-[5px]">
             <h3 className="text-lg font-bold mb-4">Filtr</h3>
             <div className="border-b pb-4 mb-4">
                 <div className="flex justify-between items-center cursor-pointer font-semibold text-[16px]">

@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 import { Route, Routes } from 'react-router-dom'
 import DetailPage from './components/Details/DetailPage'
 import ProductsDetail from './components/Filter/ProductsDetail'
+import SearchPage from './components/Search/SearchPage'
 
 
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Main/>} /> 
         <Route path='/category/:id' element={<DetailPage />} />
         <Route path='/filterle/:id' element={<ProductsDetail/>} />
+        <Route path="/search/:searchValue" element={<SearchPage />} />
       </Routes>
       <Footer/>
 

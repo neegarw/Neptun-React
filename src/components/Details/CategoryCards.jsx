@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faTableCellsLarge, faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
 import CategoryCard from './CategoryCard'
 import { getProductsBySubID } from '../../services/api'
 import { Pagination } from 'antd'
 import { scrollYuxari } from '../../utils/scrollTop'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { PiSquaresFourFill } from "react-icons/pi";
+import { IoMenu } from "react-icons/io5";
 
 
 
@@ -22,18 +24,18 @@ function CategoryCards() {
             setData(mehsul.products)
         }
         )
-    }, [id ,limit, page])
+    }, [id, limit, page])
     return (
-        <div className='w-[70%] my-[40px]'>
-            <div className='flex justify-between gap-[20px]'>
-                <div className='text-gray-500 text-[35px] flex gap-[10px]'>
-                    <span><FontAwesomeIcon icon={faTableCellsLarge} /></span>
-                    <span><FontAwesomeIcon icon={faBars} /></span>
+        <div className='w-[76%] my-[40px]'>
+            <div className='flex justify-between gap-[20px] items-center'>
+                <div className='text-gray-500 text-[35px] flex gap-[10px] px-[20px]'>
+                    <span className='text-[#ff8300] hover:text-white'><PiSquaresFourFill /></span>
+                    <span className='text-[#ff8300] hover:text-white'><IoMenu /></span>
                 </div>
-                <div className='flex items-start justify-between gap-[30px]'>
+                <div className='flex items-start justify-between gap-[30px] py-[20px]'>
                     <div>
                         <span className='text-[14px]'>Sırala: </span>
-                        <select className='py-[5px] px-[10px] rounded-[20px] border-1 text-[12px]' name="" id="">
+                        <select className='py-[7px] px-[10px] rounded-[20px] bg-white text-[12px]' name="" id="">
                             <option className='font-extrabold' value="">Əsas</option>
                             <option value="">Ad(A-Z)</option>
                             <option value="">Ad(Z-A)</option>
@@ -49,7 +51,7 @@ function CategoryCards() {
                         <span className='text-[14px]'>Göstər: </span>
                         <select
                             onChange={(e) => { setLimit(e.target.value) }}
-                            className='py-[5px]  px-[10px] rounded-[20px] border-1 text-[12px]' name="" id="">
+                            className='py-[7px]  px-[10px] rounded-[20px] bg-white text-[12px]' name="" id="">
                             <option className='font-extrabold' value="12">12</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -66,11 +68,13 @@ function CategoryCards() {
 
                 </div>
             </div>
-            <div className='flex items-center flex-wrap gap-[40px]'>
+            <div className='flex items-center flex-wrap gap-[20px] justify-between'>
                 {
-                    data.map(item => {
-                        return <CategoryCard {...item} />
-                    })
+                    data.map(item => (
+                        <Link to={`/filterle/${item.id}`}>
+                            <CategoryCard {...item} />
+                        </Link>
+                    ))
                 }
             </div>
             <div className='my-[30px]'>

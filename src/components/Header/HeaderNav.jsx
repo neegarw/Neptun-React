@@ -7,8 +7,10 @@ import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { IoMenu } from "react-icons/io5";
 import NavCategoriesForMobile from "./NavCategoriesForMobile";
+import NavCategories from "./NavCategories";
+import { HiMenuAlt2 } from "react-icons/hi";
+
 
 
 function HeaderNav() {
@@ -23,21 +25,21 @@ function HeaderNav() {
 
     return (
         <div>
-            <header className="bg-[#FF8300] py-[10px] sm:py-[0px] mt-[10px] sticky top-0 z-50 px-[10px] shadow-[0_6px_12px_rgba(0,0,0,0.2)]">
+            <header className="bg-[#FF8300] py-[20px] sm:py-[0px] mt-[10px] sticky top-0 z-50 px-[10px] shadow-[0_6px_12px_rgba(0,0,0,0.2)]">
                 <div className="mx-auto py-3 flex container justify-between items-center">
                     <div className="flex justify-between gap-[50px] px-[17px] container mx-auto pt-[40px] ">
-                        <div className="text-[13px] font-bold text-[#FF8300] bg-white py-[13px] pr-[92px] pl-[20px] sm:flex items-center relative top-[-10px] border-t-5 border-t-[#ff8300] rounded-t-[5px] z-20 hidden">
-                            <span className="text-[20px]"><IoMenu /></span>
-                            <span>Kategoriyalar</span>
+                        <div className="absolute">
+                            <NavCategories />
                         </div>
-                        <nav className="hidden md:flex space-x-6 items-center justify-end ">
+                        <nav className="hidden md:flex space-x-6 items-center justify-end py-[12px] ">
+                            <div className="w-[250px]"></div>
                             <a href="#" className="transition text-[12px] text-white font-bold whitespace-nowrap">Ana Səhifə</a>
                             <div className="relative group">
                                 <button className="flex items-center text-[12px] text-white font-bold transition">
                                     Haqqımızda
                                     <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
-                                <div className="absolute text-[12px] rounded-b-xl top-[23.5px] mt-2 w-40 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                                <div className="absolute text-[12px] rounded-b-xl top-[22px] mt-2 w-40 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100">Siyasətimiz</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100">Yeniliklər</a>
                                 </div>
@@ -47,7 +49,7 @@ function HeaderNav() {
                                     Aksiyalar
                                     <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
-                                <div className="absolute text-[12px] rounded-b-xl top-[23.5px] mt-2 w-40 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                                <div className="absolute text-[12px] rounded-b-xl top-[22px] mt-2 w-40 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">Kampaniyalar</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">Neptun bonus kart</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">Elektron kataloq</a>
@@ -59,7 +61,7 @@ function HeaderNav() {
                                     Supermarketlər
                                     <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
-                                <div className="absolute text-[12px] rounded-b-xl top-[23.5px] mt-2 w-52 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                                <div className="absolute text-[12px] rounded-b-xl top-[22px] mt-2 w-52 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">Mağazalarımız</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">İrad və təkliflər</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">Alıcıların nəzərinə</a>
@@ -73,7 +75,7 @@ function HeaderNav() {
                                     Karyera
                                     <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
-                                <div className="absolute text-[12px] rounded-b-xl top-[27px] mt-2 w-48 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                                <div className="absolute text-[12px] rounded-b-xl top-[22px] mt-2 w-48 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">İşə qəbul proseduru</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">Vakansiyalar</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-pink-100 capitalize">CV yerləşdirin</a>
@@ -84,7 +86,7 @@ function HeaderNav() {
                         <div className="flex items-center justify-end w-[100%] px-[10px]">
                             <div className="flex sm:hidden">
                                 <span className="text-[20px] text-white" onClick={() => setSidebarOpen(true)}>
-                                    <IoMenu />
+                                    <HiMenuAlt2 />
                                 </span>
                             </div>
                             <NavCategoriesForMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
@@ -102,7 +104,7 @@ function HeaderNav() {
                                     Hesabım
                                     <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
-                                <div className="absolute text-[12px] rounded-b-xl top-[25px] mt-2 w-48 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                                <div className="absolute text-[12px] rounded-b-xl top-[22px] mt-2 w-48 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
                                     <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-[#FF8300] capitalize">Hesabım</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-[#FF8300] capitalize">Əməliyyatlar</a>
                                     <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-[#FF8300] capitalize">Yükləmələr</a>
