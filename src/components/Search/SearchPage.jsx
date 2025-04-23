@@ -5,14 +5,13 @@ import { useParams } from 'react-router-dom';
 import { getProductsBySearch } from '../../services/api';
 import { PiSquaresFourFill } from "react-icons/pi";
 import { IoMenu } from "react-icons/io5";
-
-
-
 import SearchCard from './SearchCard';
+import SearchSkeleton from './SearchSkeleton';
 
 function SearchPage() {
     const { searchValue } = useParams();
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState();
+
 
     useEffect(() => {
         if (searchValue) {
@@ -20,7 +19,10 @@ function SearchPage() {
                 setResults(res.products)
             });
         }
-    }, [searchValue]);
+    }, [searchValue])
+
+    if (!results) return <> <SearchSkeleton /> </>
+
 
     return (
         <>
