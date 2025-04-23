@@ -5,3 +5,26 @@
   margin: 0 auto;
   padding: 0 15px;
 }
+/* Scroll bar ümumi ölçüsü */
+::-webkit-scrollbar {
+  width: 10px; /* dikey scroll üçün */
+  height: 10px; /* üfüqi scroll üçün */
+}
+
+/* Scroll bar arxa fonu */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Scroll bar sürüşən hissəsi */
+::-webkit-scrollbar-thumb {
+  background-color: #ff8300; /* burda rəngi dəyişə bilərsən */
+  border-radius: 10px;
+  border: 2px solid #f1f1f1; /* əlavə kontur effekti */
+}
+
+/* Hover zamanı scroll bar */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ff8300;
+}

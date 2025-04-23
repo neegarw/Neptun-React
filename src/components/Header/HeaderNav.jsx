@@ -4,12 +4,13 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import NavCategoriesForMobile from "./NavCategoriesForMobile";
 import NavCategories from "./NavCategories";
 import { HiMenuAlt2 } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import ShoppingList from "./ShoppingList";
 
 
 
@@ -112,16 +113,16 @@ function HeaderNav() {
                                 </div>
                             </div>
 
-                            <span className="text-[19px] px-[12px]"
+                            <Link to={'/wishlist'} className="text-[19px] px-[12px]"
                                 onMouseEnter={() => setHovered(true)}
                                 onMouseLeave={() => setHovered(false)}>
                                 <FontAwesomeIcon className="text-white" icon={hovered ? solidHeart : regularHeart} />
-                            </span>
+                            </Link>
                             <span className="text-[19px] px-[12px] transition-transform duration-300 hover:rotate-180">
                                 <FontAwesomeIcon className="text-white" icon={faArrowsRotate} />
                             </span>
                             <span className="text-[19px] px-[12px]">
-                                <FontAwesomeIcon className="text-white" icon={faCartShopping} />
+                                <ShoppingList />
                             </span>
                         </div>
                     </div>
