@@ -6,8 +6,11 @@ import '../../style/mainSwiper.css';
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { BASKET } from '../../context/BasketContext';
 
 export default function Slider({ data, slidesPerView, discount }) {
+    const {addToBasket, basketArr} = useContext(BASKET)
 
     return (
         <Swiper
@@ -71,7 +74,9 @@ export default function Slider({ data, slidesPerView, discount }) {
                                         <FaPlus />
                                     </button>
                                 </div>
-                                <button className='px-[21px] py-[2px] text-[#fff] rounded-[16px] bg-[#FF8203] transition-[0.4s] hover:bg-[#DE7201] mt-[10px] mb-[6px]'>Səbətə at</button>
+                                <button onClick={(e) => {
+                                    e.preventDefault()
+                                    addToBasket(item)}} className='px-[21px] py-[2px] text-[#fff] rounded-[16px] bg-[#FF8203] transition-[0.4s] hover:bg-[#DE7201] mt-[10px] mb-[6px]'>Səbətə at</button>
                             </div>
 
                         </Link>
