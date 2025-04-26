@@ -29,7 +29,6 @@ function NavCategoriesForMobile({ sidebarOpen, setSidebarOpen }) {
         getAllCategory().then(res => setData(res));
     }, []);
 
-    // Toggle funksiyası
     const toggleCategory = (index) => {
         setOpenIndexes(prev => ({
             ...prev,
@@ -42,11 +41,12 @@ function NavCategoriesForMobile({ sidebarOpen, setSidebarOpen }) {
             fixed top-0 left-0 w-64 h-full bg-white z-[999] shadow-lg transition-transform duration-300
             ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         `}>
-            <div className="flex justify-between items-center p-4 border-b">
+            <div className="hidden justify-between items-center p-4 border-b ">
                 <span className="text-[16px] font-bold text-orange-500">Kateqoriyalar</span>
-                <button onClick={() => setSidebarOpen(false)} className="text-xl text-gray-600">✕</button>
             </div>
             <div className="overflow-y-auto h-full py-2">
+            <button onClick={() => setSidebarOpen(false)} className="text-xl text-gray-600 flex w-[100%] justify-start p-[10px]">✕</button>
+
                 {data.map((item, i) => (
                     <div className="group" key={i}>
                         <div
@@ -61,8 +61,6 @@ function NavCategoriesForMobile({ sidebarOpen, setSidebarOpen }) {
                                 <span className="text-sm text-gray-500">{openIndexes[i] ? '▲' : '▼'}</span>
                             )}
                         </div>
-
-                        {/* Subcategory toggle */}
                         {item.subcategory.length > 0 && openIndexes[i] && (
                             <div className="ml-10 space-y-1 text-sm text-gray-600">
                                 {item.subcategory.map((elem, index) => (

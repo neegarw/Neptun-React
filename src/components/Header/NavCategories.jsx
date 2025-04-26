@@ -79,7 +79,7 @@ function NavCategories({ sidebarOpen }) {
                     ))}
                 </div>
             ) : (
-                <div className="relative group z-[999] top-[-7px] left-[-10px]">
+                <div className="relative group z-[999] top-[-7px] left-[-10px] hidden lg:inline-block">
                     <div className='px-4 border-t-4 border-b-4 group-hover:border-b-0 w-[250px] border-[#ff8300] bg-white font-bold text-[#ff8300] text-[14px] py-[12px] flex gap-[10px] items-center rounded-t-[5px] rounded-b-[5px] group-hover:rounded-b-[0px] overflow-hidden cursor-pointer'>
                         <span className='text-[21px]'><IoIosMenu /></span>
                         <span>Kateqoriyalar</span>

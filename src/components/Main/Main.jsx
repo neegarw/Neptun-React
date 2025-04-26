@@ -22,7 +22,7 @@ function Main() {
 
     return (
         <div className='bg-[#F2F2F2]'>
-            <div className='lg:max-w-[1200px] my-0 mx-auto'>
+            <div className='max-w-[1250px] my-0 mx-auto'>
                 <div className='bg-[#F2F2F2]'>
                     <MainTop />
                 </div>
