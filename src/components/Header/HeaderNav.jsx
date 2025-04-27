@@ -13,23 +13,14 @@ import { Link, useLocation } from "react-router-dom";
 import ShoppingList from "./ShoppingList";
 import HeaderNavForMobile from "./HeaderNavForMobile";
 
-
-
 function HeaderNav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [hovered, setHovered] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);  // Mobil sidebar
     const [sidebarOpen2, setSidebarOpen2] = useState(false);  // Masaüstü sidebar
-
-    // Mobil sidebar-ı açmaq və bağlamaq üçün funksiyalar
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-
-    // Masaüstü sidebar-ı açmaq və bağlamaq üçün funksiyalar
     const toggleSidebar2 = () => setSidebarOpen2(!sidebarOpen2);
-
     const { location } = useLocation()
-
-
     return (
         <div>
             <header className="bg-[#FF8300] mt-[10px] sticky top-0 z-50 px-[10px] shadow-[0_6px_12px_rgba(0,0,0,0.2)]">
@@ -96,7 +87,8 @@ function HeaderNav() {
                                     <HiMenuAlt2 />
                                 </span>
                             </div>
-                            {sidebarOpen && <NavCategoriesForMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}                            <div className="flex items-center">
+                            {sidebarOpen && <NavCategoriesForMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}                            
+                            <div className="flex items-center">
                                 <div className="flex items-center">
                                     <FontAwesomeIcon className="text-[#ff8300]" icon={faBars} />
                                 </div>
@@ -139,7 +131,6 @@ function HeaderNav() {
                 <HeaderNavForMobile sidebarOpen={sidebarOpen2} setSidebarOpen={setSidebarOpen2} />
             </header>
         </div>
-
     );
 }
 

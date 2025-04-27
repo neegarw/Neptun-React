@@ -1,60 +1,38 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { WISHLIST } from '../../context/WishContext'
 
 function Wishlist() {
-    const products = [
-        {
-            img: "https://via.placeholder.com/60x60?text=Limon",
-            name: "MVT.LIMON TURK EDED",
-            model: "079176",
-            stock: "Anbarda",
-            price: "0.25₼",
-        },
-        {
-            img: "https://via.placeholder.com/60x60?text=Nar",
-            name: "MVT.NAR KG",
-            model: "075908",
-            stock: "Anbarda",
-            price: "1.45₼",
-        },
-        {
-            img: "https://via.placeholder.com/60x60?text=Alma",
-            name: "MVT.ALMA UCUZ N1",
-            model: "079447",
-            stock: "B наличи",
-            price: "1.50₼",
-        },
-    ];
+    const { wish, clearWishList, delWishList } = useContext(WISHLIST)
     return (
         <div className='container flex flex-row m-auto text-[12px]'>
             <div className="p-6 min-h-screen">
-                <h1 className="text-3xl font-semibold mb-6">Arzu siyahısı</h1>
+                <div className='flex  items-center justify-between'>
+                    <h1 className="text-3xl font-semibold mb-6">Arzu siyahısı</h1>
+                    <button onClick={clearWishList} className="bg-[#ff8300] hover:bg-amber-600 px-3 py-1 rounded-full text-[14px] text-white">Arzularını unut</button>
+                </div>
                 <div className="overflow-x-auto w-[800px]">
                     <table className="min-w-full bg-white rounded-lg shadow-md">
                         <thead>
                             <tr className="bg-gray-200 text-gray-700">
                                 <th className="py-3 px-4 text-left">Şəkil</th>
                                 <th className="py-3 px-4 text-left">Məhsulun adı</th>
-                                <th className="py-3 px-4 text-left">Model</th>
-                                <th className="py-3 px-4 text-left">Anbar</th>
                                 <th className="py-3 px-4 text-left">Qiyməti</th>
                                 <th className="py-3 px-4 text-left">Hərəkət</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map((product, index) => (
+                            {wish?.map((product, index) => (
                                 <tr key={index} className="border-t hover:bg-gray-50">
                                     <td className="py-2 px-4">
-                                        <img src={product.img} alt={product.name} className="w-14 h-14 object-cover" />
+                                        <img src={product.img[0]} alt={product.name} className="w-14 h-14 object-cover" />
                                     </td>
                                     <td className="py-2 px-4 font-medium">{product.name}</td>
-                                    <td className="py-2 px-4">{product.model}</td>
-                                    <td className="py-2 px-4">{product.stock}</td>
-                                    <td className="py-2 px-4 text-orange-500 font-semibold">{product.price}</td>
+                                    <td className="py-2 px-4 text-orange-500 font-semibold">{product.price} ₼</td>
                                     <td className="py-2 px-4 flex gap-2">
                                         <button className="bg-orange-400 hover:bg-orange-500 text-white px-3 py-1 rounded-full">
                                             🛒
                                         </button>
-                                        <button className="bg-red-400 hover:bg-white  px-3 py-1 rounded-full">
+                                        <button onClick={() => delWishList(product.id)} className="bg-white hover:bg-red-500 px-3 py-1 rounded-full transition">
                                             ❌
                                         </button>
                                     </td>
