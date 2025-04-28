@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
+import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { useParams } from 'react-router-dom';
 import { getProductsBySearch } from '../../services/api';
 import { PiSquaresFourFill } from "react-icons/pi";
@@ -62,8 +61,10 @@ function SearchPage() {
                             </div>
                             <button className='bg-[#FF8300] text-white rounded-[20px] py-[5px] px-[15px] flex gap-1 text-[14px]'>
                                 <span className="group">
-                                    <FontAwesomeIcon className="text-white transition-transform duration-300 group-hover:rotate-180" icon={faArrowsRotate} />
-                                </span>
+                                    <div className="group cursor-pointer">
+                                        <IoMdHeartEmpty className="text-[#FF8300] text-[23px] group-hover:hidden" />
+                                        <IoMdHeart className="hidden text-[#FF8300] text-[23px] group-hover:block" />
+                                    </div>                                </span>
                                 <span>Müqayisə et</span>
                             </button>
 
