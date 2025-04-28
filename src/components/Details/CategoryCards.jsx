@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
 import CategoryCard from './CategoryCard'
 import { getProductsBySubID } from '../../services/api'
 import { Pagination } from 'antd'
@@ -8,6 +6,8 @@ import { scrollYuxari } from '../../utils/scrollTop'
 import { Link, useParams } from 'react-router-dom';
 import { PiSquaresFourFill } from "react-icons/pi";
 import { IoMenu } from "react-icons/io5";
+import { FaArrowsRotate } from "react-icons/fa6";
+
 
 
 
@@ -61,7 +61,9 @@ function CategoryCards() {
                     </div>
                     <button className='bg-[#FF8300] text-white rounded-[20px] py-[5px] px-[15px] flex gap-1 text-[14px]'>
                         <span className="group">
-                            <FontAwesomeIcon className="text-white transition-transform duration-300 group-hover:rotate-180" icon={faArrowsRotate} />
+                            <FaArrowsRotate
+                                className="text-white transition-transform duration-300 group-hover:rotate-180 text-[18px]"
+                            />
                         </span>
                         <span>Müqayisə et</span>
                     </button>

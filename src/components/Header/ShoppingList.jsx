@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BASKET } from '../../context/BasketContext';
+import { HiOutlineShoppingCart } from "react-icons/hi2";
+
 
 function ShoppingList() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,12 +13,10 @@ function ShoppingList() {
 
     return (
         <div className="relative">
-            <FontAwesomeIcon
+            <HiOutlineShoppingCart
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-white cursor-pointer"
-                icon={faCartShopping}
+                className="text-white cursor-pointer text-[21px]"
             />
-
             {isOpen && (
                 <div className="absolute right-0 top-12 w-106 bg-white shadow-lg rounded-lg p-4 z-50 text-[12px]">
                     {basketArr.length === 0 ? (
@@ -51,7 +50,7 @@ function ShoppingList() {
                                 <button className="bg-gray-600 text-white px-4 py-2 rounded-3xl hover:bg-orange-400 transition-all duration-300">
                                     Səbət
                                 </button>
-                                <button className="bg-orange-500 text-white px-4 py-2 rounded-3xl hover:bg-orange-600 transition-all duration-300">
+                                <button className="bg-[#ff8300] text-white px-4 py-2 rounded-3xl hover:bg-orange-600 transition-all duration-300">
                                     Sifarişi rəsmiləşdir
                                 </button>
                             </div>

@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu } from "lucide-react";
-import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FaLock } from "react-icons/fa";
+import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import NavCategoriesForMobile from "./NavCategoriesForMobile";
 import NavCategories from "./NavCategories";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
 import ShoppingList from "./ShoppingList";
 import HeaderNavForMobile from "./HeaderNavForMobile";
+import { FaArrowsRotate } from "react-icons/fa6";
+
 
 function HeaderNav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [hovered, setHovered] = useState(false);
-    const [sidebarOpen, setSidebarOpen] = useState(false);  // Mobil sidebar
-    const [sidebarOpen2, setSidebarOpen2] = useState(false);  // Masaüstü sidebar
+    const [sidebarOpen, setSidebarOpen] = useState(false);  
+    const [sidebarOpen2, setSidebarOpen2] = useState(false);  
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
     const toggleSidebar2 = () => setSidebarOpen2(!sidebarOpen2);
     const { location } = useLocation()
@@ -87,13 +85,12 @@ function HeaderNav() {
                                     <HiMenuAlt2 />
                                 </span>
                             </div>
-                            {sidebarOpen && <NavCategoriesForMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}                            
+                            {sidebarOpen && <NavCategoriesForMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}
                             <div className="flex items-center">
                                 <div className="flex items-center">
-                                    <FontAwesomeIcon className="text-[#ff8300]" icon={faBars} />
                                 </div>
                                 <div className="text-[12px] font-bold flex items-center border-r border-white pr-[12px]">
-                                    <FontAwesomeIcon className="text-white" icon={faLock} />
+                                    <FaLock className="text-white" />
                                     <span className="text-white ml-[5px]">Giriş</span>
                                 </div>
 
@@ -110,13 +107,12 @@ function HeaderNav() {
                                     </div>
                                 </div>
 
-                                <Link to={'/wishlist'} className="text-[19px] px-[12px]"
-                                    onMouseEnter={() => setHovered(true)}
-                                    onMouseLeave={() => setHovered(false)}>
-                                    <FontAwesomeIcon className="text-white" icon={hovered ? solidHeart : regularHeart} />
+                                <Link to={'/wishlist'} className="text-[19px] px-[12px] group cursor-pointer">
+                                    <IoMdHeartEmpty className="text-white text-[23px] group-hover:hidden" />
+                                    <IoMdHeart className="hidden text-white text-[23px] group-hover:block" />
                                 </Link>
                                 <span className="text-[19px] px-[12px] transition-transform duration-300 hover:rotate-180">
-                                    <FontAwesomeIcon className="text-white" icon={faArrowsRotate} />
+                                    <FaArrowsRotate className="text-white text-[18px] transition-transform duration-300 group-hover:rotate-180" />
                                 </span>
                                 <span className="text-[19px] px-[12px]">
                                     <ShoppingList />

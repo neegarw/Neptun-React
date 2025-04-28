@@ -1,17 +1,17 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext, useState } from 'react'
-import { faArrowsRotate, faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import { WISHLIST } from '../../context/WishContext';
+import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { FaArrowsRotate } from "react-icons/fa6";
 
 
-function CategoryCard({id, img, name, price, categoryName }) {
+
+function CategoryCard({ id, img, name, price, categoryName }) {
     const [hovered, setHovered] = useState(false);
 
     if (!img || !Array.isArray(img) || img.length === 0) {
-        return <p>No image available</p>; 
+        return <p>No image available</p>;
     }
-    const {addWishList} = useContext(WISHLIST)
+    const { addWishList } = useContext(WISHLIST)
 
     return (
         <div>
@@ -27,15 +27,17 @@ function CategoryCard({id, img, name, price, categoryName }) {
                 <div className='flex items-center justify-between w-[80%] mx-auto my-[10px]'>
                     <button className="py-[5px] px-[20px] bg-[#FF8300] text-white rounded-[20px] text-[12px]">Səbətə at</button>
                     <span className="text-[14px]" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-                        <FontAwesomeIcon 
-                        onClick={(e)=> {
-                         e.preventDefault()
-                         addWishList({id, img, name, price, categoryName })
-                        }}  
-                        className="text-[#FF8300]" icon={hovered ? solidHeart : regularHeart} />
+                        <div className="group cursor-pointer"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                addWishList({ id, img, name, price, categoryName })
+                            }}>
+                            <IoMdHeartEmpty className="text-[#FF8300] text-[23px] group-hover:hidden" />
+                            <IoMdHeart className="hidden text-[#FF8300] text-[23px] group-hover:block" />
+                        </div>
                     </span>
-                    <span  className="group text-[14px]">
-                        <FontAwesomeIcon className="text-[#ff8300] transition-transform duration-300 group-hover:rotate-180" icon={faArrowsRotate} />
+                    <span className="group text-[14px]">
+                        <FaArrowsRotate className="text-[#ff8300] text-[18px] transition-transform duration-300 group-hover:rotate-180" />
                     </span>
                 </div>
             </div>

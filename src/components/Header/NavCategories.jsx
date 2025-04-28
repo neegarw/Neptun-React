@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getAllCategory } from '../../services/api';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLocation } from 'react-router-dom';
 import { IoIosMenu } from "react-icons/io";
 
@@ -40,7 +38,6 @@ function NavCategories({ sidebarOpen }) {
     return (
         <>
             {isHome ? (
-                // Əsas səhifədə: ikonlar həmişə görünür
                 <div className={`
                     w-[250px] bg-white shadow-md z-990 transition-all duration-300
                     ${sidebarOpen ? 'relative top-[0px] left-0 lg:hidden' : 'relative hidden lg:block top-[-5px] left-[-10px]'}
