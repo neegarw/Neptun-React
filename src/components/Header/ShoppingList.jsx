@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { BASKET } from '../../context/BasketContext';
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 
