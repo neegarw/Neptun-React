@@ -49,11 +49,11 @@ function NavCategories({ sidebarOpen }) {
 
                     {data.map((item, i) => (
                         <div className="group relative" key={i}>
-                            <div className="flex items-center gap-2 text-bold px-4 py-2 hover:bg-orange-100 cursor-pointer transition">
+                            <div className="flex items-center gap-2 text-bold px-4 py-2 hover:bg-orange-100 cursor-pointer transition border-b-1 border-gray-200 last:border-b-0 mx-auto p-[10px]">
                                 <span className="text-orange-500 text-xl">
                                     <img src={icons[i]} alt="" />
                                 </span>
-                                <span className="font-bold text-[11px] w-[100%] flex justify-between">
+                                <span className="font-bold text-[11px] w-[100%] flex justify-between ">
                                     <span>{item.categoryName}</span>
                                     {item.subcategory.length > 0 && <span>›</span>}
                                 </span>

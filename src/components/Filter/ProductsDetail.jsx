@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getProductsById } from '../../services/api'
 import { useParams } from 'react-router-dom'
 import ProductDetailSkeleton from './ProductDetailSkeleton'
 import { Rate } from 'antd';
+import { BASKET } from '../../context/BasketContext';
+import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
+import { WISHLIST } from '../../context/WishContext';
 
 
 function ProductsDetail() {
     const [data, setData] = useState()
     const { id } = useParams()
 
+    const [count, setCount] = useState(1)
+    function incDec(x) {
+        if (count + x > 0) setCount(count + x)
+    }
+    const { addToBasket } = useContext(BASKET)
+    const { addWishList } = useContext(WISHLIST)
+
     useEffect(() => {
         getProductsById(id).then(res => setData(res))
 
     }, [id])
+
 
     if (!data) return <> <ProductDetailSkeleton /> </>
 
@@ -45,16 +56,26 @@ function ProductsDetail() {
                             <div className="text-3xl text-orange-500 font-bold mb-4">{data.price}</div>
 
                             <div className="flex items-center mb-4">
-                                <button className="w-8 h-8 bg-gray-200 rounded-full text-xl">-</button>
-                                <span className="px-4">1</span>
-                                <button className="w-8 h-8 bg-gray-200 rounded-full text-xl">+</button>
+                                <button
+                                    onClick={() => { incDec(-1) }}
+                                    className="w-8 h-8 bg-gray-200 rounded-full text-xl">-</button>
+                                <span className="px-4">{count}</span>
+                                <button
+                                    onClick={() => { incDec(1) }}
+                                    className="w-8 h-8 bg-gray-200 rounded-full text-xl">+</button>
                                 <span className="ml-2">Ədəd</span>
                             </div>
 
                             <div className="flex items-center space-x-4">
-                                <button className="bg-orange-500 text-white px-6 py-2 rounded-full">Səbətə At</button>
-                                <button className="text-orange-500 text-2xl">♡</button>
-                                <button className="text-orange-500 text-2xl">↻</button>
+                                <button
+                                    onClick={() => addToBasket({...data, count})}
+                                    className="bg-orange-500 text-white px-6 py-2 rounded-full">Səbətə At</button>
+                                <div
+                                    onClick={() => addWishList({ id, img, name, price, categoryName, count })}
+                                    className="text-[19px] px-[12px] group cursor-pointer">
+                                    <IoMdHeartEmpty className="text-[#ff8300] text-[23px] group-hover:hidden" />
+                                    <IoMdHeart className="hidden text-[#ff8300] text-[23px] group-hover:block" />
+                                </div>
                             </div>
                         </div>
                     </div>

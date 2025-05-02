@@ -12,7 +12,8 @@ function HeaderTop() {
     const [inpVal, setInpVal] = useState('')
     const [search, setSearch] = useState([])
     useEffect(() => {
-        getProductsBySearch(inpVal).then(res => setSearch(res.products.slice(0, 5)))
+        if (inpVal.trim().length > 1){
+        getProductsBySearch(inpVal).then(res => setSearch(res.products.slice(0, 5)))}
     }, [inpVal])
 
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ function HeaderTop() {
                     </Link>
                     <div className="sm:w-[50%] flex justify-between">
                         <div>
-                            <div className="flex items-center border-2 border-[#FF8300] rounded-full px-3 py-2 bg-white h-[40px] relative w-full max-w-[400px]">
+                            <div className="flex items-center border-1 border-[#FF8300] rounded-full px-3 py-2 bg-white h-[40px] relative w-full max-w-[400px]">
                                 <FiSearch className="text-[#FF8300] mr-2" />
                                 <input
                                     onChange={(e) => { setInpVal(e.target.value) }}
@@ -41,7 +42,7 @@ function HeaderTop() {
                                 />
                                 <button
                                     onClick={handleSearch}
-                                    className="bg-[#FF8300] text-white px-4 py-1.5 rounded-full hover:bg-orange-500 transition absolute right-0">
+                                    className="bg-[#FF8300] text-white px-4 py-2 rounded-full hover:bg-orange-500 transition absolute right-[-5px]">
                                     Axtar
                                 </button>
                                 {

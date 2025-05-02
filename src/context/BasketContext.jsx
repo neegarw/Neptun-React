@@ -2,24 +2,31 @@ import { createContext, useState } from 'react';
 
 export const BASKET = createContext()
 
-function BasketContext({children}) {
-    const [basketArr, setBasketArr] = useState([])
+function BasketContext({ children }) {
+    const initialBasket = JSON.parse(localStorage.getItem('basket')) || []
+    const [basketArr, setBasketArr] = useState(initialBasket)
 
     function addToBasket(item) {
-        setBasketArr(prev => {
-            const existing = prev.find(i => i.id === item.id);
-            if (existing) {
-                return prev.map(i =>
-                    i.id === item.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i
-                );
-            }
-            return [...prev, { ...item, quantity: 1 }];
-        });
-    }    
+        const index = basketArr.findIndex(elem => elem.id === item.id)
+        if (index != -1) {
+            basketArr[index].count += item.count
+            setBasketArr([...basketArr])
+        } else { setBasketArr([...basketArr, item]) }
+        localStorage.setItem('basket', JSON.stringify(basketArr))
+    }
+    function clearBasket(){
+        localStorage.removeItem('basket')
+        setBasketArr([])
+    }
+    function removeFromBasket(id){
+        const newArr = basketArr.filter(item => item.id != id)
+        setBasketArr(newArr)
+        localStorage.setItem('basket', JSON.stringify(newArr))
+    }
 
     return (
         <>
-            <BASKET.Provider value={{addToBasket, basketArr}}>
+            <BASKET.Provider value={{ addToBasket, basketArr, removeFromBasket, clearBasket }}>
                 {children}
             </BASKET.Provider>
         </>
