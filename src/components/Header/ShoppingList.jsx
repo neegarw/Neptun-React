@@ -23,7 +23,7 @@ function ShoppingList() {
                 className="text-white cursor-pointer text-[21px]"
             />
             {isOpen && (
-                <div className="absolute right-0 top-12 w-106 bg-white shadow-lg rounded-lg p-4 z-50 text-[12px]">
+                <div className="absolute right-0 top-7 sm:top-9 lg:w-106 w-[330px] bg-white shadow-lg border-t-2 border-[#ff8300] p-4 z-50 text-[12px]">
                     {basketArr.length === 0 ? (
                         <p className="text-center text-gray-500">Səbət boşdur</p>
                     ) : (
@@ -36,13 +36,15 @@ function ShoppingList() {
                                             <div className="text-sm font-normal w-[200px] text-gray-500 hover:text-orange-400">
                                                 {item.name}
                                             </div>
-                                            <div className="text-xs">x {item.count}</div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center space-x-2">
+                                    <div className="text-xs">x {item.count}</div>
+                                    <div className="flex items-center gap-3">
                                         <div>{(item.price * item.count).toFixed(2)}₼</div>
                                         <FaTrash 
-                                        onClick={()=> removeFromBasket(item.id)}
+                                        onClick={(e)=> {
+                                            e.stopPropagation()
+                                            removeFromBasket(item.id)}}
                                         className="text-gray-500 cursor-pointer hover:text-amber-500" />
                                     </div>
                                 </div>

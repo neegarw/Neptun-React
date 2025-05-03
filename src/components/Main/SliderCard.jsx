@@ -15,7 +15,7 @@ function SliderCard({ item, discount }) {
     const { addWishList } = useContext(WISHLIST)
     const { id, img, name, price, categoryName } = item
     return (
-        <div className="group w-[191px] px-[10px] h-[375px] pb-[17px] rounded-[7px] flex flex-col items-center text-center bg-white relative">
+        <div className="xl:w-[191px] w-[170px] px-[10px] h-[375px] pb-[17px] rounded-[7px] flex flex-col items-center text-center bg-white relative">
             <div className='absolute top-[10px] right-[10px] text-[#FF8203] text-[20px]'>
                 <div className="group cursor-pointer"
                     onClick={(e) => {

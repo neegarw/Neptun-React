@@ -1,45 +1,44 @@
-import axios from "axios";
-
+import { axiosInstance } from "./instance"
 async function getSlider() {
-    const res = await axios.get('https://neptunbk.vercel.app/slider')
+    const res = await  axiosInstance.get('/slider')
     return res.data
 }
 
 async function getAllCategory() {
-    const res = await axios.get('https://neptunbk.vercel.app/categories')
+    const res = await  axiosInstance.get('/categories')
     return res.data
 }
 
 async function getProdByPopular() {
-    const res = await axios.get('https://neptunbk.vercel.app/products/populyar')
+    const res = await  axiosInstance.get('/products/populyar')
     return res.data
 }
 
 async function getProdByDiscounted() {
-    const res = await axios.get('https://neptunbk.vercel.app/products/discounted')
+    const res = await  axiosInstance.get('/products/discounted')
     return res.data
 }
 
 async function getProductsById(id) {
-    const res = await axios.get(`https://neptunbk.vercel.app/products/${id}`)
+    const res = await  axiosInstance.get(`/products/${id}`)
     return res.data
 }
 
 async function getAllProducts() {
-    const res = await axios.get('https://neptunbk.vercel.app/products')
+    const res = await  axiosInstance.get('/products')
     return res.data
 }
 
 async function getProductsBySubID(id, limit, page) {
-    const res = await axios.get(`https://neptunbk.vercel.app/products/subcategory/${id}?limit=${limit}&page=${page}`)
+    const res = await  axiosInstance.get(`/products/subcategory/${id}?limit=${limit}&page=${page}`)
     return res.data
 }
 async function getProductsBySearch(name) {
-    const res = await axios.get(`https://neptunbk.vercel.app/products/search?name=${name}`)
+    const res = await  axiosInstance.get(`/products/search?name=${name}`)
     return res.data
 }
 async function getProdByCategory(id) {
-    const res = await axios.get('https://neptunbk.vercel.app/products/category/' + id)
+    const res = await  axiosInstance.get('/products/category/' + id)
     return res.data
 }
 

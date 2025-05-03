@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules';
-import '../../style/headerSwiper.css'
+import '../../style/swiper.css'
 
 function MainTopSlider() {
     const [data, setData] = useState([

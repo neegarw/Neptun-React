@@ -6,7 +6,8 @@ import { Rate } from 'antd';
 import { BASKET } from '../../context/BasketContext';
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
 import { WISHLIST } from '../../context/WishContext';
-
+import { FaArrowsRotate } from 'react-icons/fa6';
+import captcha from '../../assets/images/captcha.png'
 
 function ProductsDetail() {
     const [data, setData] = useState()
@@ -23,7 +24,6 @@ function ProductsDetail() {
         getProductsById(id).then(res => setData(res))
 
     }, [id])
-
 
     if (!data) return <> <ProductDetailSkeleton /> </>
 
@@ -53,7 +53,7 @@ function ProductsDetail() {
                             <div className="text-sm text-gray-600 mb-1">Model: <span className="font-semibold">101123</span></div>
                             <div className="text-sm text-gray-600 mb-4">Mövcudluq: <span className="text-green-600 font-semibold">✔</span></div>
 
-                            <div className="text-3xl text-orange-500 font-bold mb-4">{data.price}</div>
+                            <div className="text-3xl text-orange-500 font-bold mb-4">{data.price}  ₼</div>
 
                             <div className="flex items-center mb-4">
                                 <button
@@ -66,16 +66,28 @@ function ProductsDetail() {
                                 <span className="ml-2">Ədəd</span>
                             </div>
 
-                            <div className="flex items-center space-x-4">
+                            <div className="flex items-center">
                                 <button
-                                    onClick={() => addToBasket({...data, count})}
+                                    onClick={() => addToBasket({ ...data, count })}
                                     className="bg-orange-500 text-white px-6 py-2 rounded-full">Səbətə At</button>
                                 <div
-                                    onClick={() => addWishList({ id, img, name, price, categoryName, count })}
+                                    onClick={() =>
+                                        addWishList({
+                                            id: data.id,
+                                            img: data.img,
+                                            name: data.name,
+                                            price: data.price,
+                                            categoryName: data.categoryName,
+                                            count,
+                                        })
+                                    }
                                     className="text-[19px] px-[12px] group cursor-pointer">
                                     <IoMdHeartEmpty className="text-[#ff8300] text-[23px] group-hover:hidden" />
                                     <IoMdHeart className="hidden text-[#ff8300] text-[23px] group-hover:block" />
                                 </div>
+                                <span className="group text-[14px]">
+                                    <FaArrowsRotate className="text-[#ff8300] text-[18px] transition-transform duration-300 group-hover:rotate-180" />
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -90,15 +102,13 @@ function ProductsDetail() {
                         <textarea placeholder="Şərh" className="w-full p-4 rounded-xl h-40 resize-y mb-4 bg-gray-50"></textarea>
 
                         <p className="text-sm text-red-500 mb-2">Qeyd: <span className="text-black">HTML etiketləri işləmir!</span></p>
-
                         <div>
                             <Rate />
                         </div>
-
-                        <input type="text" placeholder="Aşağıdakı kodu daxil edin **" className="w-full p-3 rounded-full mb-4" />
-
-                        <img src="captcha.png" alt="captcha" className="mb-4" />
-
+                        <input type="text" placeholder="Aşağıdakı kodu daxil edin **" className="w-full p-2 text-[12px] rounded-full mb-4 mt-4 bg-white" />
+                        <div className='w-[130px]'>
+                            <img src={captcha} alt="captcha" className="mb-4 w-full" />
+                        </div>
                         <button className="bg-orange-500 text-white px-6 py-2 rounded-full">Davam Et</button>
                     </div>
 

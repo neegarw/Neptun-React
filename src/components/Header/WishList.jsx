@@ -1,13 +1,16 @@
 import React, { useContext } from 'react'
 import { WISHLIST } from '../../context/WishContext'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { BASKET } from '../../context/BasketContext'
 
 function Wishlist() {
-    const { wish, clearWishList, delWishList } = useContext(WISHLIST) 
+    const { wish, clearWishList, delWishList } = useContext(WISHLIST)
+    const { addToBasket } = useContext(BASKET)
     const navigate = useNavigate()
     function yonlendir(id) {
         navigate('/filterle/' + id)
     }
+
     return (
         <div className='container flex flex-col lg:flex-row m-auto text-[12px] gap-6 px-4'>
             <div className="p-4 lg:p-6 min-h-screen w-full lg:w-3/4">
@@ -28,27 +31,54 @@ function Wishlist() {
                                 <th className="py-3 px-4 text-left">Hərəkət</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='w-full'>
                             {wish?.map((product, index) => (
-                                <tr onClick={() => yonlendir(product.id)} key={index} className="border-t hover:bg-gray-50">
+                                <tr
+                                    onClick={() => yonlendir(product.id)}
+                                    key={index}
+                                    className="border-t hover:bg-gray-50"
+                                >
                                     <td className="py-2 px-4">
                                         <img src={product.img[0]} alt={product.name} className="w-14 h-14 object-cover" />
                                     </td>
                                     <td className="py-2 px-4 font-medium">{product.name}</td>
                                     <td className="py-2 px-4 text-orange-500 font-semibold">{product.price} ₼</td>
-                                    <td onClick={(e) => {
-                                        e.stopPropagation()
-                                    }} className="py-2 px-4 flex gap-2">
-                                        <button className="bg-orange-400 hover:bg-orange-500 text-white px-3 py-1 rounded-full">
-                                            🛒
-                                        </button>
-                                        <button onClick={() => delWishList(product.id)} className="bg-white hover:bg-red-500 px-3 py-1 rounded-full transition">
-                                            ❌
-                                        </button>
+                                    <td
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="py-2 px-4"
+                                    >
+                                        <div className="flex gap-2">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    addToBasket({
+                                                        id: product.id,
+                                                        img: product.img,
+                                                        name: product.name,
+                                                        price: product.price,
+                                                        categoryName: product.categoryName,
+                                                        count: product.count || 1
+                                                    })
+                                                }}
+                                                className="bg-orange-400 hover:bg-orange-500 text-white px-3 py-1 rounded-full"
+                                            >
+                                                🛒
+                                            </button>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    delWishList(product.id)
+                                                }}
+                                                className="bg-white hover:bg-red-500 px-3 py-1 rounded-full transition"
+                                            >
+                                                ❌
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
+
                     </table>
                 </div>
 

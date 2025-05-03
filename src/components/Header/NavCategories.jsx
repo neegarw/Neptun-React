@@ -30,7 +30,6 @@ function NavCategories({ sidebarOpen }) {
     const location = useLocation()
     const isHome = location.pathname === '/';
 
-
     useEffect(() => {
         getAllCategory().then(res => setData(res));
     }, []);
@@ -63,15 +62,18 @@ function NavCategories({ sidebarOpen }) {
                                 <div className="absolute top-0 left-full w-72 bg-white shadow-md border-l-2 border-[#FF8300] px-4 py-3 hidden group-hover:block max-h-[200px] overflow-y-auto">
                                     <div className="space-y-2">
                                         {item.subcategory.map((elem, index) => (
-                                            <div key={index} className="text-[12px] text-gray-700 hover:text-orange-500 cursor-pointer">
-                                                <Link to={`/category/${elem.id}`}>
-                                                    {elem.categoryName}
-                                                </Link>
-                                            </div>
+                                            <Link
+                                                key={index}
+                                                to={`/category/${elem.id}`}
+                                                className="block text-[12px] text-gray-700 hover:text-orange-500 cursor-pointer"
+                                            >
+                                                {elem.categoryName}
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
                             )}
+
                         </div>
                     ))}
                 </div>
@@ -84,7 +86,7 @@ function NavCategories({ sidebarOpen }) {
                     <div className="absolute top-full left-0 w-[250px] bg-white shadow-md z-990 transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
                         {data.map((item, i) => (
                             <div className="relative group/item" key={i}>
-                                <div className="flex items-center gap-2 px-4 py-2 hover:bg-orange-100 cursor-pointer transition ">
+                                <div className="flex items-center gap-2 px-4 py-2 hover:bg-orange-100 cursor-pointer transition border-b-1 border-gray-200 last:border-b-0">
                                     <span className="text-orange-500 text-xl w-[20px]">
                                         <img src={icons[i]} alt="" />
                                     </span>
@@ -97,15 +99,18 @@ function NavCategories({ sidebarOpen }) {
                                     <div className="absolute top-0 left-full w-72 bg-white shadow-md border-l-2 border-[#FF8300] px-4 py-3 opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 max-h-[200px] overflow-y-auto">
                                         <div className="space-y-2">
                                             {item.subcategory.map((elem, index) => (
-                                                <div key={index} className="text-[12px] text-gray-700 hover:text-orange-500 cursor-pointer">
-                                                    <Link to={`/category/${elem.id}`}>
-                                                        {elem.categoryName}
-                                                    </Link>
-                                                </div>
+                                                <Link
+                                                    key={index}
+                                                    to={`/category/${elem.id}`}
+                                                    className="block text-[12px] text-gray-700 hover:text-orange-500 cursor-pointer"
+                                                >
+                                                    {elem.categoryName}
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
                                 )}
+
                             </div>
                         ))}
                     </div>

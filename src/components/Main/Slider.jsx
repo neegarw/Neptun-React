@@ -2,23 +2,21 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
-import '../../style/mainSwiper.css';
+import '../../style/swiper.css';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { BASKET } from '../../context/BasketContext';
 import SliderCard from './SliderCard';
 
 export default function Slider({ data, slidesPerView, discount }) {
     return (
         <Swiper
             loop={true}
-            spaceBetween={30}
+            spaceBetween={25}
             navigation={true}
             modules={[Navigation]}
-            className="mySwiper"
+            className="mainSlider"
             breakpoints={{
                 320: {
-                    slidesPerView: 1,
+                    slidesPerView: 2,
                 },
                 480: {
                     slidesPerView: 2,

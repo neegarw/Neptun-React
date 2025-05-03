@@ -15,9 +15,14 @@ function WishContext({ children }) {
     const [wish, setWish] = useState(inithal)
 
     function addWishList(item) {
-        setWish([...wish, item])
-        localStorage.setItem('WishList', JSON.stringify([...wish, item]))
+        const movcud = wish.find(w => w.id === item.id);
+        if (!movcud) {
+            const newWish = [...wish, item];
+            setWish(newWish);
+            localStorage.setItem('WishList', JSON.stringify(newWish));
+        }
     }
+    
     function clearWishList() {
         localStorage.removeItem('WishList')
         setWish([])
