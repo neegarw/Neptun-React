@@ -13,7 +13,7 @@ function Wishlist() {
 
     return (
         <div className='container flex flex-col lg:flex-row m-auto text-[12px] gap-6 px-4'>
-            <div className="p-4 lg:p-6 min-h-screen w-full lg:w-3/4">
+            <div className="p-4 lg:p-6 min-h-screen w-full lg:w-[75%]">
                 <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4 items-center'>
                     <h1 className="text-2xl sm:text-3xl font-semibold">Arzu siyahısı</h1>
                     <button onClick={clearWishList} className="bg-[#ff8300] hover:bg-amber-600 px-4 py-2 rounded-full text-white text-sm">
@@ -22,30 +22,33 @@ function Wishlist() {
                 </div>
 
                 <div className="overflow-x-auto mt-4 w-full">
-                    <table className="min-w-full bg-white rounded-lg shadow-md text-sm">
-                        <thead>
-                            <tr className="bg-gray-200 text-gray-700">
-                                <th className="py-3 px-4 text-left">Şəkil</th>
-                                <th className="py-3 px-4 text-left">Məhsulun adı</th>
-                                <th className="py-3 px-4 text-left">Qiyməti</th>
-                                <th className="py-3 px-4 text-left">Hərəkət</th>
-                            </tr>
-                        </thead>
-                        <tbody className='w-full'>
-                            {wish?.map((product, index) => (
-                                <tr
-                                    onClick={() => yonlendir(product.id)}
-                                    key={index}
-                                    className="border-t hover:bg-gray-50"
-                                >
-                                    <td className="py-2 px-4">
-                                        <img src={product.img[0]} alt={product.name} className="w-14 h-14 object-cover" />
-                                    </td>
-                                    <td className="py-2 px-4 font-medium">{product.name}</td>
-                                    <td className="py-2 px-4 text-orange-500 font-semibold">{product.price} ₼</td>
-                                    <td
+                    <div className="w-full">
+                        {wish?.map((product, index) => (
+                            <div
+                                onClick={() => yonlendir(product.id)}
+                                key={index}
+                                className="w-full hover:bg-gray-100 flex flex-row lg:items-center bg-gray-50 items-center lg:justify-between sm:flex-row mb-4 sm:mb-0 bg-white-300 sm:bg-gray-50 sm:hover::bg-gary-100 rounded-lg sm:rounded-none shadow-sm sm:shadow-none p-4 sm:p-0 my-2"
+                            >
+
+                                <div className="py-2 px-0 sm:px-4 flex sm:table-cell items-center gap-4">
+                                    <img
+                                        src={product.img[0]}
+                                        alt={product.name}
+                                        className="w-20 h-20 object-cover rounded-md"
+                                    />
+                                    <div className="sm:hidden">
+                                        <p className="font-semibold">{product.name}</p>
+                                        <p className="text-orange-500 text-[15px]">{product.price} ₼</p>
+                                    </div>
+                                </div>
+                                <div className="py-2 px-4 hidden sm:table-cell font-medium">{product.name}</div>
+                                <div className='flex gap-[15px'>
+                                    <div className="py-2 px-4 hidden sm:table-cell text-orange-500 font-semibold">
+                                        {product.price} ₼
+                                    </div>
+                                    <div
                                         onClick={(e) => e.stopPropagation()}
-                                        className="py-2 px-4"
+                                        className="py-2 px-4 mt-2 sm:mt-0"
                                     >
                                         <div className="flex gap-2">
                                             <button
@@ -74,14 +77,12 @@ function Wishlist() {
                                                 ❌
                                             </button>
                                         </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-
-                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-
                 <div className="mt-6 flex justify-end">
                     <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-base">
                         Davam et
@@ -89,7 +90,7 @@ function Wishlist() {
                 </div>
             </div>
 
-            <div className="bg-white p-4 rounded-md shadow-md w-full lg:w-1/4 mt-4 lg:mt-0">
+            <div className="bg-white p-4 rounded-md shadow-md w-full lg:w-[25%] mt-4 lg:mt-0">
                 <h3 className="text-lg font-semibold mb-4">Hesab</h3>
                 <ul className="space-y-2 text-sm text-gray-800">
                     {[

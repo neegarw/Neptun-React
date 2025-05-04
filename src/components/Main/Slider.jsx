@@ -10,7 +10,7 @@ export default function Slider({ data, slidesPerView, discount }) {
     return (
         <Swiper
             loop={true}
-            spaceBetween={25}
+            spaceBetween={15}
             navigation={true}
             modules={[Navigation]}
             className="mainSlider"
