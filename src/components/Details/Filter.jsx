@@ -1,9 +1,21 @@
 import { FaChevronDown } from 'react-icons/fa'
-import PriceRange from './PriceRange'
+import { Slider, Switch } from 'antd';
+import { useEffect, useState } from 'react';
 
-function Filter() {
+
+function Filter({ data, setFilter }) {
+    const [reverse, setReverse] = useState(true);
+
+    const [minMax, setMinMax] = useState([0, 5])
+    useEffect(() => {
+        const sortByProd = data.sort((a, b) => a.price - b.price)
+        const min = sortByProd[0]?.price
+        const max = sortByProd.at(-1)?.price
+        setMinMax([min, max])
+    }, [data])
+
     return (
-        <div className="bg-[#F7F7F7] p-5 rounded-xl w-[25%] my-[40px] mx-[5px]">
+        <div className="bg-[#F7F7F7] p-5 rounded-xl lg:w-[25%] my-[20px] lg:my-[40px] mx-0 lg:mx-[5px]">
             <h3 className="text-lg font-bold mb-4">Filtr</h3>
             <div className="border-b pb-4 mb-4">
                 <div className="flex justify-between items-center cursor-pointer font-semibold text-[16px]">
@@ -22,17 +34,27 @@ function Filter() {
                     <span className="text-[#FF8203] ml-auto font-semibold">5</span>
                 </div>
             </div>
-
-            {/* Qiymət */}
             <div className="border-b pb-4 mb-4">
                 <div className="flex justify-between items-center cursor-pointer font-semibold text-[16px] mb-3">
                     Qiymət
                     <FaChevronDown className="text-sm" />
                 </div>
-                <PriceRange />
+
+                <Slider
+                    onChange={(elem) => {
+                        setFilter(elem)
+                    }}
+                    range
+                    defaultValue={minMax}
+                    min={minMax[0]}
+                    max={minMax[1]}
+                    step={0.1}
+                />
             </div>
             <div className="pt-2">
-                <button className="w-full py-2 rounded-full bg-[#FF8203] text-white font-bold text-[15px]">
+                <button
+                    onClick={() => { setReverse(false) }}
+                    className="w-full py-2 rounded-full bg-[#FF8203] text-white font-bold text-[15px]">
                     Hamısını Sıfırla
                 </button>
             </div>

@@ -10,6 +10,7 @@ import WishList from './components/Header/WishList'
 import Landing from './components/Layout/Landing'
 import Error404 from './components/Error/Error404'
 import { scrollYuxari } from './utils/scrollTop'
+import Login from './Auth/Login'
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/filterle/:id' element={<ProductsDetail />} />
           <Route path="/search/:searchValue" element={<SearchPage />} />
           <Route path='/wishlist' element={<WishList />} />
+          <Route path='/login' element={<Login />}/>
           <Route path='*' element={<Error404 />} />
         </Route>
       </Routes>

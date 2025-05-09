@@ -5,7 +5,7 @@ import { IoMdHeartEmpty, IoMdHeart, IoIosArrowDown } from "react-icons/io";
 import NavCategoriesForMobile from "./NavCategoriesForMobile";
 import NavCategories from "./NavCategories";
 import { HiMenuAlt2 } from "react-icons/hi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ShoppingList from "./ShoppingList";
 import HeaderNavForMobile from "./HeaderNavForMobile";
 import { FaArrowsRotate } from "react-icons/fa6";
@@ -20,6 +20,10 @@ function HeaderNav() {
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
     const toggleSidebar2 = () => setSidebarOpen2(!sidebarOpen2);
     const { location } = useLocation()
+    const navigate = useNavigate() 
+    const handleClick = () => {
+        navigate('/login')
+    }
     return (
         <div>
             <header className="bg-[#FF8300] py-[10px] mt-[10px] sticky top-0 z-50 px-[10px] shadow-[0_6px_12px_rgba(0,0,0,0.2)]">
@@ -92,12 +96,12 @@ function HeaderNav() {
                                 </div>
                                 <div className="text-[12px] font-bold flex items-center border-r border-white pr-[12px]">
                                     <FaLock className="text-white" />
-                                    <span className="text-white ml-[5px]">Giriş</span>
+                                    <span onClick={handleClick} className="text-white ml-[5px]">Giriş</span>
                                 </div>
 
                                 <div className="relative group mx-3">
                                     <button className="flex items-center text-[12px] text-white font-bold transition">
-                                        <span className="hidden sm:flex">Hesabım</span>
+                                        <Link to={'/hesabim'} className="hidden sm:flex">Hesabım</Link>
                                         <span className="flex sm:hidden"></span>
                                         <ChevronDown className="ml-1 h-4 w-4" />
                                     </button>

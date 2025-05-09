@@ -8,31 +8,37 @@ import { PiSquaresFourFill } from "react-icons/pi";
 import { IoMenu } from "react-icons/io5";
 import { FaArrowsRotate } from "react-icons/fa6";
 
-
-
-
-function CategoryCards() {
+function CategoryCards({ setData: setfilterData, filter }) {
     const { id } = useParams();
     const [data, setData] = useState([])
     const [limit, setLimit] = useState(12)
     const [obj, setObj] = useState([])
     const [page, setPage] = useState(1)
+    const [stok, setStok] = useState([])
 
     useEffect(() => {
         getProductsBySubID(id, limit, page).then(mehsul => {
             setObj(mehsul)
             setData(mehsul.products)
+            setStok(mehsul.products)
+            setfilterData(mehsul.products)
         }
         )
     }, [id, limit, page])
+
+    useEffect(() => {
+        const yeniArr = stok.filter(item => (item.price >= filter[0] && item.price <= filter[1]))
+        setData(yeniArr)
+    }, [filter])
+
     return (
-        <div className='w-[76%] my-[40px]'>
-            <div className='flex justify-between gap-[20px] items-center'>
+        <div className='w-full lg:w-[76%] my-[20px] lg:my-[40px]'>
+            <div className='flex flex-col sm:flex-row justify-between gap-[20px] items-start'>
                 <div className='text-gray-500 text-[35px] flex gap-[10px] px-[20px]'>
                     <span className='text-[#ff8300] hover:text-white'><PiSquaresFourFill /></span>
                     <span className='text-[#ff8300] hover:text-white'><IoMenu /></span>
                 </div>
-                <div className='flex items-start justify-between gap-[30px] py-[20px]'>
+                <div className='flex flex-col sm:flex-row items-start justify-between gap-[30px] py-[20px]'>
                     <div>
                         <span className='text-[14px]'>Sırala: </span>
                         <select className='py-[7px] px-[10px] rounded-[20px] bg-white text-[12px]' name="" id="">
@@ -70,7 +76,7 @@ function CategoryCards() {
 
                 </div>
             </div>
-            <div className='flex items-center flex-wrap gap-[20px] justify-between'>
+            <div className='flex items-center flex-wrap gap-[20px] justify-center'>
                 {
                     data.map(item => (
                         <Link to={`/filterle/${item.id}`}>

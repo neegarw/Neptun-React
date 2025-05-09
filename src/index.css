@@ -24,3 +24,17 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ff8300;
 }
+.ant-slider-track ,.ant-slider-track-1{
+  background-color: #ff8300!important;
+  box-shadow: #ff8300!important;
+}
+.ant-slider-handele::after ,.ant-slider-handle-1::after, .ant-slider-handle-2::after{
+background-color: #ff8300!important;
+box-shadow: #ff8300!important;
+}
+.ant-tooltip-open, .ant-slider-handle-dragging{
+  background-color: #ff8300!important;
+  box-shadow: #ff8300!important;
+}
+
+
