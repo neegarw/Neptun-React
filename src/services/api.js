@@ -33,12 +33,24 @@ async function getProductsBySubID(id, limit, page) {
     const res = await  axiosInstance.get(`/products/subcategory/${id}?limit=${limit}&page=${page}`)
     return res.data
 }
+
 async function getProductsBySearch(name) {
     const res = await  axiosInstance.get(`/products/search?name=${name}`)
     return res.data
 }
+
 async function getProdByCategory(id) {
     const res = await  axiosInstance.get('/products/category/' + id)
+    return res.data
+}
+
+async function login(item) {
+    const res = await  axiosInstance.post('/auth/login', item)
+    return res.data
+}
+
+async function verifyToken() {
+    const res = await  axiosInstance.get('/auth/verify-token')
     return res.data
 }
 
@@ -46,5 +58,6 @@ export {
     getSlider, getAllCategory, getProductsBySubID,
     getProdByPopular, getProdByDiscounted,
     getAllProducts, getProdByCategory,
-    getProductsBySearch, getProductsById
+    getProductsBySearch, getProductsById, 
+    login, verifyToken
 }
