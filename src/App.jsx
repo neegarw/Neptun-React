@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Header from './components/Header/Header'
+import { useEffect, useState } from 'react'
 import Main from './components/Main/Main'
-import Footer from './components/Footer/Footer'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import DetailPage from './components/Details/DetailPage'
 import ProductsDetail from './components/Filter/ProductsDetail'

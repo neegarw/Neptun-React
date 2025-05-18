@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getProductsBySearch } from '../../services/api';
 import { PiSquaresFourFill } from "react-icons/pi";
 import { IoMenu } from "react-icons/io5";
 import SearchCard from './SearchCard';
 import SearchSkeleton from './SearchSkeleton';
+import { FaArrowsRotate } from 'react-icons/fa6';
 
 function SearchPage() {
     const { searchValue } = useParams();
     const [results, setResults] = useState();
-    const [limit, setLimit] = useState(12); // limit əlavə edildi
+    const [limit, setLimit] = useState(12);
+    const [layout, setLayout] = useState('grid')
+
 
     useEffect(() => {
         if (searchValue) {
@@ -19,22 +21,26 @@ function SearchPage() {
             });
         }
     }, [searchValue])
-
     if (!results) return <> <SearchSkeleton /> </>
-
     return (
         <>
             <div className='bg-[#f2f2f2]'>
                 <div className='py-6 px-4 sm:px-6 lg:px-8 container mx-auto'>
-                    {/* Top filter section */}
                     <div className='flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 items-start lg:items-center py-6'>
-                        {/* Icons */}
-                        <div className='text-gray-500 text-2xl sm:text-3xl flex gap-3 px-0 lg:px-4'>
-                            <span className='text-[#ff8300] hover:text-white'><PiSquaresFourFill /></span>
-                            <span className='text-[#ff8300] hover:text-white'><IoMenu /></span>
+                        <div className='text-gray-500 text-[35px] flex gap-[10px] px-[20px]'>
+                            <span
+                                className={`cursor-pointer ${layout === 'grid' ? 'text-[#ff8300]' : 'text-gray-400'}`}
+                                onClick={() => setLayout('grid')}
+                            >
+                                <PiSquaresFourFill />
+                            </span>
+                            <span
+                                className={`cursor-pointer ${layout === 'list' ? 'text-[#ff8300]' : 'text-gray-400'}`}
+                                onClick={() => setLayout('list')}
+                            >
+                                <IoMenu />
+                            </span>
                         </div>
-
-                        {/* Filters */}
                         <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6'>
                             <div>
                                 <span className='text-sm'>Sırala: </span>
@@ -65,19 +71,19 @@ function SearchPage() {
                             </div>
 
                             <button className='bg-[#FF8300] text-white rounded-full py-2 px-4 flex items-center gap-2 text-sm'>
-                                <span className="group relative">
-                                    <IoMdHeartEmpty className="text-white text-lg group-hover:hidden" />
-                                    <IoMdHeart className="hidden text-white text-lg group-hover:block" />
+                                <span className="group flex gap-1">
+                                    <FaArrowsRotate
+                                        className="text-white transition-transform duration-300 group-hover:rotate-180 text-[18px]"
+                                    />
+                                    <span>Müqayisə et</span>
                                 </span>
-                                <span>Müqayisə et</span>
+                                
                             </button>
                         </div>
                     </div>
-
-                    {/* Product cards */}
-                    <div className='flex flex-wrap justify-between sm:justify-start gap-4 py-3'>
+                    <div className='flex flex-wrap sm:justify-between justify-center gap-3 py-3'>
                         {results.map(item => (
-                            <SearchCard key={item.id} {...item} />
+                            <SearchCard key={item.id} {...item} layout={layout} />
                         ))}
                     </div>
                 </div>

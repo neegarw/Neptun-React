@@ -12,16 +12,20 @@ function HeaderTop() {
     const [inpVal, setInpVal] = useState('')
     const [search, setSearch] = useState([])
     useEffect(() => {
-        if (inpVal.trim().length > 1){
-        getProductsBySearch(inpVal).then(res => setSearch(res.products.slice(0, 5)))}
+        if (inpVal.trim().length > 1) {
+            getProductsBySearch(inpVal).then(res => setSearch(res.products.slice(0, 5)))
+        }
     }, [inpVal])
 
     const navigate = useNavigate();
     const handleSearch = () => {
         if (inpVal.trim().length > 1) {
             navigate(`/search/${inpVal}`);
+            setInpVal('');
+            setSearch([]);
         }
     };
+
     return (
         <header className="p-4 bg-white">
             <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-0 h-auto lg:h-16 ">
@@ -36,35 +40,45 @@ function HeaderTop() {
                                 <input
                                     onChange={(e) => { setInpVal(e.target.value) }}
                                     value={inpVal}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            e.preventDefault(); 
+                                            handleSearch();    
+                                        }
+                                    }}
                                     type="text"
                                     placeholder="Məhsulu axtarın"
                                     className="flex-1 lg:w-[300px] outline-none text-gray-600 placeholder-gray-400 bg-transparent h-[36px]"
                                 />
+
+
                                 <button
                                     onClick={handleSearch}
                                     className="bg-[#FF8300] text-white px-4 py-2 rounded-full hover:bg-orange-500 transition absolute right-[-5px]">
                                     Axtar
                                 </button>
                                 {
-                                    inpVal.length > 2 &&
+                                    inpVal.length > 2 && search.length > 0 &&
                                     <div className='absolute top-[105%] left-0 bg-white min-w-[100%] min-h-[350px] z-99'>
                                         <ul>
-                                            {
-                                                search.map(item => (
-                                                    <Link to={`filterle/${item.id}`} className='flex text-[12px] h-full gap-[20px] justify-between border-b-[.5px] border-gray-500 px-[10px] py-[5px] hover:bg-gray-100'>
-                                                        <div className='w-[25%]'>
-                                                            <img className='w-full' src={item.img} alt="photo" />
-                                                        </div>
-                                                        <div className='w-[70%] flex flex-col'>
-                                                            <p>{item.category.categoryName} - {item.name}</p>
-                                                            <p className='text-[23px] font-bold'>{item.price}  ₼</p>
-                                                        </div>
-                                                    </Link>
-                                                ))
-                                            }
+                                            {search.map(item => (
+                                                <Link
+                                                    key={item.id}
+                                                    to={`filterle/${item.id}`}
+                                                    className='flex text-[12px] h-full gap-[20px] justify-between border-b-[.5px] border-gray-500 px-[10px] py-[5px] hover:bg-gray-100'>
+                                                    <div className='w-[25%]'>
+                                                        <img className='w-full' src={item.img} alt="photo" />
+                                                    </div>
+                                                    <div className='w-[70%] flex flex-col'>
+                                                        <p>{item.category.categoryName} - {item.name}</p>
+                                                        <p className='text-[23px] font-bold'>{item.price}  ₼</p>
+                                                    </div>
+                                                </Link>
+                                            ))}
                                         </ul>
                                     </div>
                                 }
+
                             </div>
                         </div>
                     </div>

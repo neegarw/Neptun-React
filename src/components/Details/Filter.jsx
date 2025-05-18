@@ -54,7 +54,7 @@ function Filter({ data, setFilter }) {
                     <span className="text-[14px] font-medium">Neptun-
                         {
                             <span className="text-[14px] font-medium">
-                                Neptun - {subCatName}
+                                {subCatName.toUpperCase()}
                             </span>
 
                         }
