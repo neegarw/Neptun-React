@@ -10,7 +10,7 @@ import SearchSkeleton from './SearchSkeleton';
 function SearchPage() {
     const { searchValue } = useParams();
     const [results, setResults] = useState();
-
+    const [limit, setLimit] = useState(12); // limit əlavə edildi
 
     useEffect(() => {
         if (searchValue) {
@@ -22,20 +22,23 @@ function SearchPage() {
 
     if (!results) return <> <SearchSkeleton /> </>
 
-
     return (
         <>
             <div className='bg-[#f2f2f2]'>
-                <div className='py-[30px] px-[20px] container mx-auto'>
-                    <div className='flex justify-between gap-[20px] items-center py-[30px]'>
-                        <div className='text-gray-500 text-[35px] flex gap-[10px] px-[20px]'>
+                <div className='py-6 px-4 sm:px-6 lg:px-8 container mx-auto'>
+                    {/* Top filter section */}
+                    <div className='flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 items-start lg:items-center py-6'>
+                        {/* Icons */}
+                        <div className='text-gray-500 text-2xl sm:text-3xl flex gap-3 px-0 lg:px-4'>
                             <span className='text-[#ff8300] hover:text-white'><PiSquaresFourFill /></span>
                             <span className='text-[#ff8300] hover:text-white'><IoMenu /></span>
                         </div>
-                        <div className='flex items-start justify-between gap-[30px]'>
+
+                        {/* Filters */}
+                        <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6'>
                             <div>
-                                <span className='text-[14px]'>Sırala: </span>
-                                <select className='py-[7px] px-[10px] rounded-[20px] border-0 bg-white text-[12px]' name="" id="">
+                                <span className='text-sm'>Sırala: </span>
+                                <select className='py-2 px-3 rounded-full border-0 bg-white text-xs'>
                                     <option className='font-extrabold' value="">Əsas</option>
                                     <option value="">Ad(A-Z)</option>
                                     <option value="">Ad(Z-A)</option>
@@ -47,11 +50,12 @@ function SearchPage() {
                                     <option value="">Model(Z-A)</option>
                                 </select>
                             </div>
+
                             <div>
-                                <span className='text-[14px]'>Göstər: </span>
+                                <span className='text-sm'>Göstər: </span>
                                 <select
                                     onChange={(e) => { setLimit(e.target.value) }}
-                                    className='py-[5px]  px-[10px] rounded-[20px] border-0 bg-white text-[12px]' name="" id="">
+                                    className='py-2 px-3 rounded-full border-0 bg-white text-xs'>
                                     <option className='font-extrabold' value="12">12</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -59,26 +63,26 @@ function SearchPage() {
                                     <option value="100">100</option>
                                 </select>
                             </div>
-                            <button className='bg-[#FF8300] text-white rounded-[20px] py-[5px] px-[15px] flex gap-1 text-[14px]'>
-                                <span className="group">
-                                    <div className="group cursor-pointer">
-                                        <IoMdHeartEmpty className="text-[#FF8300] text-[23px] group-hover:hidden" />
-                                        <IoMdHeart className="hidden text-[#FF8300] text-[23px] group-hover:block" />
-                                    </div>                                </span>
+
+                            <button className='bg-[#FF8300] text-white rounded-full py-2 px-4 flex items-center gap-2 text-sm'>
+                                <span className="group relative">
+                                    <IoMdHeartEmpty className="text-white text-lg group-hover:hidden" />
+                                    <IoMdHeart className="hidden text-white text-lg group-hover:block" />
+                                </span>
                                 <span>Müqayisə et</span>
                             </button>
-
                         </div>
                     </div>
-                    <div className='flex container mx-auto items-center justify-between flex-wrap gap-[40px]'>
+
+                    {/* Product cards */}
+                    <div className='flex flex-wrap justify-between sm:justify-start gap-4 py-3'>
                         {results.map(item => (
-                            <SearchCard {...item} />
+                            <SearchCard key={item.id} {...item} />
                         ))}
                     </div>
                 </div>
             </div>
         </>
-
     );
 }
 

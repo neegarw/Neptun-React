@@ -5,9 +5,10 @@
   margin: 0 auto;
   padding: 0 15px;
 }
+
 ::-webkit-scrollbar {
-  width: 10px; 
-  height: 10px; 
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -16,7 +17,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ff8300; 
+  background-color: #ff8300;
   border-radius: 10px;
   border: 2px solid #f1f1f1;
 }
@@ -24,17 +25,42 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ff8300;
 }
-.ant-slider-track ,.ant-slider-track-1{
-  background-color: #ff8300!important;
-  box-shadow: #ff8300!important;
-}
-.ant-slider-handele::after ,.ant-slider-handle-1::after, .ant-slider-handle-2::after{
-background-color: #ff8300!important;
-box-shadow: #ff8300!important;
-}
-.ant-tooltip-open, .ant-slider-handle-dragging{
-  background-color: #ff8300!important;
-  box-shadow: #ff8300!important;
+
+.ant-slider-track,
+.ant-slider-track-1 {
+  background-color: #ff8300 !important;
+  box-shadow: #ff8300 !important;
 }
 
+.ant-slider-handele::after,
+.ant-slider-handle-1::after,
+.ant-slider-handle-2::after {
+  background-color: #ff8300 !important;
+  box-shadow: #ff8300 !important;
+}
 
+.ant-tooltip-open,
+.ant-slider-handle-dragging {
+  background-color: #ff8300 !important;
+  box-shadow: #ff8300 !important;
+}
+
+:where(.css-dev-only-do-not-override-1v5z42l).ant-slider .ant-slider-handle::after {
+  box-shadow: #ff8300 !important;
+}
+
+:where(.css-dev-only-do-not-override-1v5z42l).ant-slider .ant-slider-handle:hover::after,
+:where(.css-dev-only-do-not-override-1v5z42l).ant-slider .ant-slider-handle:active::after,
+:where(.css-dev-only-do-not-override-1v5z42l).ant-slider .ant-slider-handle:focus::after {
+  box-shadow: 0 0 0 2.5px #ff8300 !important;
+}
+:where(.css-dev-only-do-not-override-1v5z421) .ant-slider:hover
+.ant-slider-handle::after{
+    box-shadow: 0 0 0 2px #ff8300 !important;
+}
+:where(.css-dev-only-do-not-override-1v5z42l).ant-slider .ant-slider-handle::after{
+      box-shadow: 0 0 0 2px #ff8300;
+}
+:where(.css-dev-only-do-not-override-1v5z42l).ant-slider:hover .ant-slider-handle::after {
+    box-shadow: 0 0 0 2px #ff84007d;
+}

@@ -1,10 +1,15 @@
 import { FaChevronDown } from 'react-icons/fa'
-import { Slider, Switch } from 'antd';
-import { useEffect, useState } from 'react';
+import { Slider } from 'antd';
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import { getAllCategory } from '../../services/api'; 
+
+
 
 
 function Filter({ data, setFilter }) {
     const [reverse, setReverse] = useState(true);
+
 
     const [minMax, setMinMax] = useState([0, 5])
     useEffect(() => {
@@ -13,6 +18,22 @@ function Filter({ data, setFilter }) {
         const max = sortByProd.at(-1)?.price
         setMinMax([min, max])
     }, [data])
+
+    const { id } = useParams(); 
+    const [subCatName, setSubCatName] = useState("");
+
+    useEffect(() => {
+        getAllCategory().then(res => {
+            for (let category of res) {
+                const found = category.subcategory.find(sub => sub.id == id);
+                if (found) {
+                    setSubCatName(found.categoryName);
+                    break;
+                }
+            }
+        });
+    }, [id]);
+
 
     return (
         <div className="bg-[#F7F7F7] p-5 rounded-xl lg:w-[25%] my-[20px] lg:my-[40px] mx-0 lg:mx-[5px]">
@@ -30,7 +51,14 @@ function Filter({ data, setFilter }) {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                     <div className="w-[14px] h-[14px] bg-[#FF8203] rounded-sm"></div>
-                    <span className="text-[14px] font-medium">NEPTUN-MEYVETEREVEZ</span>
+                    <span className="text-[14px] font-medium">Neptun-
+                        {
+                            <span className="text-[14px] font-medium">
+                                Neptun - {subCatName}
+                            </span>
+
+                        }
+                    </span>
                     <span className="text-[#FF8203] ml-auto font-semibold">5</span>
                 </div>
             </div>

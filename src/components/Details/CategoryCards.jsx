@@ -15,6 +15,8 @@ function CategoryCards({ setData: setfilterData, filter }) {
     const [obj, setObj] = useState([])
     const [page, setPage] = useState(1)
     const [stok, setStok] = useState([])
+    const [layout, setLayout] = useState('grid')
+
 
     useEffect(() => {
         getProductsBySubID(id, limit, page).then(mehsul => {
@@ -35,8 +37,18 @@ function CategoryCards({ setData: setfilterData, filter }) {
         <div className='w-full lg:w-[76%] my-[20px] lg:my-[40px]'>
             <div className='flex flex-col sm:flex-row justify-between gap-[20px] items-start'>
                 <div className='text-gray-500 text-[35px] flex gap-[10px] px-[20px]'>
-                    <span className='text-[#ff8300] hover:text-white'><PiSquaresFourFill /></span>
-                    <span className='text-[#ff8300] hover:text-white'><IoMenu /></span>
+                    <span
+                        className={`cursor-pointer ${layout === 'grid' ? 'text-[#ff8300]' : 'text-gray-400'}`}
+                        onClick={() => setLayout('grid')}
+                    >
+                        <PiSquaresFourFill />
+                    </span>
+                    <span
+                        className={`cursor-pointer ${layout === 'list' ? 'text-[#ff8300]' : 'text-gray-400'}`}
+                        onClick={() => setLayout('list')}
+                    >
+                        <IoMenu />
+                    </span>
                 </div>
                 <div className='flex flex-col sm:flex-row items-start justify-between gap-[30px] py-[20px]'>
                     <div>
@@ -76,15 +88,14 @@ function CategoryCards({ setData: setfilterData, filter }) {
 
                 </div>
             </div>
-            <div className='flex items-center flex-wrap gap-[20px] justify-center'>
-                {
-                    data.map(item => (
-                        <Link to={`/filterle/${item.id}`}>
-                            <CategoryCard {...item} />
-                        </Link>
-                    ))
-                }
+            <div className={`flex flex-wrap gap-[20px] justify-center ${layout === 'list' ? 'flex-col items-start' : 'items-center'}`}>
+                {data.map(item => (
+                    <Link to={`/filterle/${item.id}`} className={`${layout === 'list' ? 'w-full' : 'w-auto'}`}>
+                        <CategoryCard {...item} layout={layout} />
+                    </Link>
+                ))}
             </div>
+
             <div className='my-[30px]'>
                 <Pagination
                     onChange={(cur) => {
